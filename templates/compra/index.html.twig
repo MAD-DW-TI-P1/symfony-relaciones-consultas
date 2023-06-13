@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compra index{% endblock %}
+
+{% block body %}
+    <h1>Compra index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Productos</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for compra in compras %}
+            <tr>
+                <td>{{ compra.id }}</td>
+                <td>{{ compra.fecha ? compra.fecha|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ compra.usuario }}</td>
+                <td>{% if compra.producto is iterable %} 
+                        {% for p in compra.producto %} 
+                            <span class="badge text-bg-success rounded-pill">{{p.nombre}}</span>
+                        {% endfor %}
+                    {% endif %} 
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_compra_show', {'id': compra.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('app_compra_edit', {'id': compra.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_compra_new') }}">Create new</a>
+{% endblock %}
