@@ -32,6 +32,7 @@ Entidades relacionadas Symfony
 - Modificar el entity para ocultar una propiedad y generarla dinámicamente
 - Modificar los twig para mostrar las relaciones entres las tablas
 - Utilizar Select2
+- Crear una API para hacer un buscador en API Controller
 
 # Rutas de la aplicación:
 
@@ -43,6 +44,7 @@ Entidades relacionadas Symfony
 | /producto/new                  |  Nuevo usuario  | 
 | /compra/                  |  Listado de producto  |
 | /compra/new                  |  Nuevo usuario  |
+| /api/compra?id=5&usuario=2&orden=DESC                |  Filtro dinámicos  |
 
 # Referencias
 

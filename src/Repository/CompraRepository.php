@@ -39,6 +39,44 @@ class CompraRepository extends ServiceEntityRepository
         }
     }
 
+   /**
+    * @return Compra[] Returns an array of Compra objects
+    */
+   public function filter($id, $usuario, $orden): array
+   {
+        $queryBuilder = $this->createQueryBuilder('c');
+
+        if ($id) {
+            $queryBuilder
+                ->andWhere('c.id = :id')
+                ->setParameter('id', $id);
+        }
+        if ($usuario) {
+            $queryBuilder
+                ->andWhere('c.usuario = :usuario')
+                ->setParameter('usuario', $usuario);
+        }
+        // No puede ser dinámico el order
+        if ($orden == 'ASC' ) {
+            $queryBuilder
+                ->orderBy('c.id', 'ASC');
+        } else {
+            $queryBuilder
+                ->orderBy('c.id', 'DESC');
+        }
+        return $queryBuilder->getQuery()->getResult();
+   }
+
+//    public function findOneBySomeField($value): ?Compra
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
+
 //    /**
 //     * @return Compra[] Returns an array of Compra objects
 //     */
@@ -54,13 +92,4 @@ class CompraRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Compra
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
