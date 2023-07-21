@@ -65,6 +65,10 @@ class ApiCompraController extends AbstractController
         ]);
 
         return new JsonResponse($jsonCompras, 200, [], true);
+
+        // En la idea de seguir reduciendo los controladores a su mínima expresión también podemos crear y utilizar servicios. Los creamos y los inyectamos en el controlador.
+        // En Symfony, un controlador es una clase que contiene funciones (métodos) que manejan las solicitudes entrantes y generan las respuestas correspondientes. 
+        
     }
 
 }
